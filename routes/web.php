@@ -19,5 +19,6 @@ Route::get('/', function () {
 
 Route::view('/signin','signin');
 Route::view('/login','login');
+Route::view('/input','input');
 Route::view('/history','history');
 
