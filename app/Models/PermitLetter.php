@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class PermitLetter extends Model
 {
-    use HasFactory;
+    //use HasFactory;
 
     protected $table = 'permit_letters';
+    protected $guarded = [];
+
 }

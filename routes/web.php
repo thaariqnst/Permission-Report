@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PermitLetterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 }); 
 
+Route::get('/input',[PermitLetterController::class, 'store'])->name('permitletter');
+
 Route::view('/signin','signin');
 Route::view('/login','login');
-Route::view('/input','input');
 Route::view('/history','history');
 
