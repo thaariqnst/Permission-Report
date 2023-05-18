@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('start_date')->useCurrent();
             $table->date('end_date')->useCurrent();
             $table->string('pic_name',100);
+            $table->enum('status', ['submitted', 'accepted', 'rejected'])->default('submitted');
             $table->timestamps();
         });
     }
