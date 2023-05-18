@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">Submit Permission</div>
                 <div class="card-body">
-                    <form action="{{route('permitletter.store')}}" method="POST">
+                    <form action="/permitletter" method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="label-form">Name</label>
@@ -16,12 +16,12 @@
                         </div>
                         <div class="form-group mt-3">
                             <label class="label-form">Class</label>
+                            <input type="text" name="class" class="form-control">
                             <!-- <select name="class" class="form-control">
                                 
                                 <option value=""></option> 
                                 
                             </select> -->
-                            <input type="text" >
                         </div>
                         <div class="form-group mt-3">
                             <label class="label-form">Reason</label>

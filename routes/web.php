@@ -19,7 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 }); 
 
-Route::get('/input',[PermitLetterController::class, 'store'])->name('permitletter');
+Route::get('/create',[PermitLetterController::class, 'index']);
+Route::post('/permitletter',[PermitLetterController::class, 'store'])->name('permitletter');
 
 Route::view('/signin','signin');
 Route::view('/login','login');

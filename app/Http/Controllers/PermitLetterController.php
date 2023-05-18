@@ -21,6 +21,8 @@ class PermitLetterController extends Controller
             'name' => $request->name,
             'class' => $request->class,
             'reason' => $request->reason,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
             'pic_name' => $request->pic_name
 
         ]);

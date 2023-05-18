@@ -16,12 +16,12 @@ return new class extends Migration
     {
         Schema::create('permit_letters', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100)->required();
-            $table->string('class',20)->required();
-            $table->string('reason',255)->required();
-            $table->date('start_date')->required();
-            $table->date('end_date')->required();
-            $table->string('pic_name',100)->required();
+            $table->string('name',100);
+            $table->string('class',20);
+            $table->string('reason',255);
+            $table->date('start_date')->useCurrent();
+            $table->date('end_date')->useCurrent();
+            $table->string('pic_name',100);
             $table->timestamps();
         });
     }
