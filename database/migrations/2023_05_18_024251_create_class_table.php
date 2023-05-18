@@ -14,13 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('class', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('major_id');
+            $table->bigIncrements('id');
+            $table->foreignId('major_id')->constrained('major')->cascadeOnDelete();
             $table->string('class_name');
-            $table->integer('users_id');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
-            $table->foreign('major_id')->on('major')->references('id')->onDelete('cascade');
-            $table->foreign('users_id')->on('users')->references('id')->onDelete('cascade');
         });
     }
 
