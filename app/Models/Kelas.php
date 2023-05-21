@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PermitLetter extends Model
+class Kelas extends Model
 {
     //use HasFactory;
 
-    protected $table = 'permit_letter';
+    protected $table = 'class';
     protected $guarded = [];
 
+    public function major(){
+        return $this->belongsTo('App\Models\Major', 'id_major');
+    }
 }

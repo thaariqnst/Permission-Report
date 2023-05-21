@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PermitLetter extends Model
+class Major extends Model
 {
     //use HasFactory;
 
-    protected $table = 'permit_letter';
+    protected $table = 'major';
     protected $guarded = [];
-
 }

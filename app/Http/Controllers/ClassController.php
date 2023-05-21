@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PermitLetter;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 
-class PermitLetterController extends Controller
+class ClassController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class PermitLetterController extends Controller
      */
     public function index()
     {
-        $permitletter = PermitLetter::all();
-        // return view('input');
+        $kelas = Kelas::all();
+        return ('halaman kelas');
     }
 
     /**
@@ -27,7 +26,7 @@ class PermitLetterController extends Controller
     public function create()
     {
         $kelas = Kelas::all();
-        return view('permit.create', compact('kelas'));
+        return redirect('/input');
     }
 
     /**
@@ -38,25 +37,16 @@ class PermitLetterController extends Controller
      */
     public function store(Request $request)
     {
-        PermitLetter::create([
-            'name' => $request->name,
-            'class' => $request->class,
-            'reason' => $request->reason,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'pic_name' => $request->pic_name
-
-        ]);
-        return back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PermitLetter  $permitLetter
+     * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(PermitLetter $permitLetter)
+    public function show(Kelas $kelas)
     {
         //
     }
@@ -64,10 +54,10 @@ class PermitLetterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PermitLetter  $permitLetter
+     * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(PermitLetter $permitLetter)
+    public function edit(Kelas $kelas)
     {
         //
     }
@@ -76,10 +66,10 @@ class PermitLetterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PermitLetter  $permitLetter
+     * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PermitLetter $permitLetter)
+    public function update(Request $request, Kelas $kelas)
     {
         //
     }
@@ -87,10 +77,10 @@ class PermitLetterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PermitLetter  $permitLetter
+     * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PermitLetter $permitLetter)
+    public function destroy(Kelas $kelas)
     {
         //
     }

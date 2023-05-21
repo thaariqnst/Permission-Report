@@ -16,7 +16,6 @@
                         </div>
                         <div class="form-group mt-3">
                             <label class="label-form">Class</label>
-                            <input type="text" name="class" class="form-control">
                             <select name="class" class="form-control">
                                 @foreach($kelas as $row)
                                 <option value="{{$row->id}}">{{$row->class_name}}</option> 
