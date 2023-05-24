@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">Submit Permission</div>
                 <div class="card-body">
-                    <form action="/permitletter" method="POST">
+                    <form action="{{route('submit.store')}}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="label-form">Name</label>
@@ -16,7 +16,8 @@
                         </div>
                         <div class="form-group mt-3">
                             <label class="label-form">Class</label>
-                            <select name="class" class="form-control">
+                            <select name="class" class="form-select">
+                                <option selected>Pilih Kelas</option>
                                 @foreach($kelas as $row)
                                 <option value="{{$row->id}}">{{$row->class_name}}</option> 
                                 @endforeach

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermitLetterController;
+use App\Http\Controllers\SubmitLetterController;
 use App\Http\Controllers\ClassController;
 
 
@@ -23,7 +24,8 @@ Route::get('/', function () {
 // Route::get('/input',[PermitLetterController::class, 'index']);
 // Route::post('/permitletter',[PermitLetterController::class, 'store'])->name('permitletter');
 
-Route::resource('permit',PermitLetterController::class);
+Route::resource('submit',SubmitLetterController::class);
+Route::resource('recent-permit',PermitLetterController::class);
 Route::resource('class',ClassController::class);
 
 Route::view('/signin','signin');
