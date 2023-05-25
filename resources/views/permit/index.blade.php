@@ -6,50 +6,60 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Your Recent Submission</div>
-                <div class="card-body d-flex ">
-                    <div class="container">
-                        <div class="card">
-                            <div class="card-header bg-white">
-                                <div class="fw-bold">Muhammad Ath Thaariq</div>
-                                <div class="fw-italic">XI RPL A</div>
-                            </div>
-                            <div class="card-body p-4 d-flex">
-                                <div class="mb-3">
-                                    <div class="col-md-6 pe-3">
-                                        <div class="fw-light">permit type</div>
-                                        <div>Health</div>
-                                    </div>
-                                    <div class="col-md-6 pe-3">
-                                        <div class="fw-light">description</div>
-                                        <div class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit beatae, totam natus at quam tempore!</div>
-                                    </div>
-                                    
+                <div class="card-body">
+                    <div class="row row-cols-2">
+
+                @foreach($permitletter as $data)
+                        <div class="mb-4">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <div class="fw-bold">{{$data->user_id}}</div>
+                                    <div class="fw-italic">{{$data->class_id}}</div>
                                 </div>
-                                
-                                <div class="">
-                                <div class="">
-                                        <div class="fw-light">start date</div>
-                                        <div>24-05-2023</div>
+                                <div class="card-body p-4 d-flex">
+                                    <div class="col-md-6 gap-2">
+                                        <div class="container">
+                                            <div class="fw-light">permit type</div>
+                                            <div>{{$data->permission_type}}</div>
+                                        </div>
+                                        <div class="container">
+                                            <div class="fw-light">description</div>
+                                            <div class="">{{$data->desc}}</div>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <div class="fw-light">end date</div>
-                                        <div>27-05-2023</div>
+
+                                    <div class="col-md-6">
+                                        <div class="container">
+                                            <div class="fw-light">start date</div>
+                                            <div>{{$data->start_date}}</div>
+                                        </div>
+                                        <div class="container">
+                                            <div class="fw-light">end date</div>
+                                            <div>{{$data->end_date}}</div>
+                                        </div>
                                     </div>
+
                                 </div>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <div class="fw-light">PIC Name</div>
-                                <div class="fw-bold">Abdul Jabbar</div>
+                                <div class="card-footer bg-white">
+                                    <div class="fw-light">PIC Name</div>
+                                    <div class="fw-bold">Abdul Jabbar</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
+                </div>
 
-    
-                    
-                    
 
-                    
-                    
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>
