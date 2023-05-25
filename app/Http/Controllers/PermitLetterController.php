@@ -47,8 +47,8 @@ class PermitLetterController extends Controller
      */
     public function show(PermitLetter $permitLetter)
     {
-        $permitletter = PermitLetter::latest()->paginate();
-        return view('permit.recent', compact('permitletter'));
+        $permitletter = PermitLetter::all();
+        return view('permit.history', compact('permitletter'));
     }
 
     /**
@@ -73,7 +73,7 @@ class PermitLetterController extends Controller
     {
         $permitletter = PermitLetter::all();
 
-        
+
 
         return view('permit.incoming', compact('permitletter'));
     }
