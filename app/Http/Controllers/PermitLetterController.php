@@ -36,7 +36,9 @@ class PermitLetterController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $input = $request->all();
+        PermitLetter::create($input);
+        return back();
     }
 
     /**
@@ -47,8 +49,7 @@ class PermitLetterController extends Controller
      */
     public function show(PermitLetter $permitLetter)
     {
-        $permitletter = PermitLetter::all();
-        return view('permit.history', compact('permitletter'));
+       //
     }
 
     /**

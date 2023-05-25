@@ -26,10 +26,9 @@ Route::get('/', function () {
 // Route::post('/permitletter',[PermitLetterController::class, 'store'])->name('permitletter');
 
 Route::resource('submit',SubmitLetterController::class);
-Route::get('recent',[SubmitLetterController::class, 'show']);
 
+Route::resource('permit',PermitLetterController::class);
 Route::get('incoming',[PermitLetterController::class, 'update']);
-Route::get('history',[PermitLetterController::class, 'show']);
 
 Route::resource('class',ClassController::class);
 

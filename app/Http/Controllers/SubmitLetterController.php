@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PermitLetter;
 use App\Models\Kelas;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SubmitLetterController extends Controller
@@ -17,7 +18,8 @@ class SubmitLetterController extends Controller
     {
         $permitletter = PermitLetter::all();
         $kelas = Kelas::all();
-        return view('permit.create', compact('kelas'));
+        $user = User::all();
+        return view('permit.create', compact('kelas','permitletter','user'));
     }
 
     /**
@@ -28,7 +30,6 @@ class SubmitLetterController extends Controller
     public function create()
     {
         $kelas = Kelas::all();
-        //return view('permit.create', compact('kelas'));
     }
 
     /**
@@ -39,16 +40,7 @@ class SubmitLetterController extends Controller
      */
     public function store(Request $request)
     {
-        PermitLetter::create([
-            'name' => $request->name,
-            'class' => $request->class,
-            'reason' => $request->reason,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'pic_name' => $request->pic_name
-
-        ]);
-        return back();
+        
     }
 
     /**
@@ -59,8 +51,7 @@ class SubmitLetterController extends Controller
      */
     public function show(PermitLetter $permitLetter)
     {
-        $permitletter = PermitLetter::latest()->paginate();
-        return view('permit.recent', compact('permitletter'));
+        //
     }
 
     /**

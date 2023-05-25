@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="container">
                                             <div class="fw-light">description</div>
-                                            <div class="">{{$data->desc}}</div>
+                                            <div class="">{{$data->description}}</div>
                                         </div>
                                     </div>
 

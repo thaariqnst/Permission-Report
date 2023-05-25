@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="container">
                                             <div class="fw-light">description</div>
-                                            <div class="">{{$data->desc}}</div>
+                                            <div class="">{{$data->description}}</div>
                                         </div>
                                     </div>
 
@@ -47,7 +47,7 @@
                                             <div class="fw-bold">{{$data->pic_name}}</div>
                                         </div>
 
-                                        <div class="col-md-2 text-end align-items-center">
+                                        <div class="col-md-2 text-end">
                                             <button class="btn btn-success mt-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
