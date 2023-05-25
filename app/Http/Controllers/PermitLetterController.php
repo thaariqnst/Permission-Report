@@ -14,7 +14,7 @@ class PermitLetterController extends Controller
      */
     public function index()
     {
-        $permitletter = PermitLetter::latest()->paginate(5);
+        $permitletter = PermitLetter::latest()->paginate();
         return view('permit.index', compact('permitletter'));
     }
 
@@ -47,7 +47,8 @@ class PermitLetterController extends Controller
      */
     public function show(PermitLetter $permitLetter)
     {
-        //
+        $permitletter = PermitLetter::latest()->paginate();
+        return view('permit.recent', compact('permitletter'));
     }
 
     /**
@@ -70,7 +71,11 @@ class PermitLetterController extends Controller
      */
     public function update(Request $request, PermitLetter $permitLetter)
     {
-        //
+        $permitletter = PermitLetter::all();
+
+        
+
+        return view('permit.incoming', compact('permitletter'));
     }
 
     /**

@@ -25,7 +25,10 @@ Route::get('/', function () {
 // Route::post('/permitletter',[PermitLetterController::class, 'store'])->name('permitletter');
 
 Route::resource('submit',SubmitLetterController::class);
-Route::resource('recent-permit',PermitLetterController::class);
+
+Route::get('recent',[PermitLetterController::class, 'show']);
+Route::get('incoming',[PermitLetterController::class, 'update']);
+
 Route::resource('class',ClassController::class);
 
 Route::view('/signin','signin');
