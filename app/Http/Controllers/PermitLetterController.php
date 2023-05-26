@@ -12,6 +12,12 @@ class PermitLetterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+     
     public function index()
     {
         $permitletter = PermitLetter::latest()->paginate();
@@ -74,8 +80,7 @@ class PermitLetterController extends Controller
     {
         $permitletter = PermitLetter::all();
 
-
-
+        
         return view('permit.incoming', compact('permitletter'));
     }
 

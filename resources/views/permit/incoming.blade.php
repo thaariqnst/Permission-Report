@@ -42,12 +42,23 @@
                                 </div>
                                 <div class="card-footer bg-white">
                                     <div class="row justify-content-between">
-                                        <div class="col-md-10">
+                                        <div class="col-md-6">
                                             <div class="fw-light">PIC Name</div>
                                             <div class="fw-bold">{{$data->pic_name}}</div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <form action="" method="post" class=" col-md-4">
+                                                <select name="status" id="" class="form-control">
+                                                    <option>submitted</option>
+                                                    <option value="accepted">accepted</option>
+                                                    <option value="rejected">rejected</option>
+                                                </select>
+                                            </form>
+                                        </div>
 
-                                        <div class="col-md-2 text-end">
+
+
+                                        <!-- <div class="col-md-2 text-end">
                                             <button class="btn btn-success mt-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
@@ -68,29 +79,29 @@
                                                         d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                                                 </svg>
                                                 Tolak
-                                            </button>
-                                        </div>
+                                            </button> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
+                    @endforeach
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

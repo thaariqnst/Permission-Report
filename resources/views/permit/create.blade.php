@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label class="label-form">Name</label>
                             <input type="text" name="user_id" value="{{Auth::user()->id}}" hidden class="form-control">
-                            <input type="text" value="{{Auth::user()->name}}" disable class="form-control">
+                            <input type="text" value="{{Auth::user()->name}}" disabled class="form-control">
                         </div>
                         <div class="form-group mt-3">
                             <label class="label-form">Class</label>

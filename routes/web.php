@@ -16,7 +16,6 @@ use App\Http\Controllers\ClassController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,7 +27,8 @@ Route::get('/', function () {
 Route::resource('submit',SubmitLetterController::class);
 
 Route::resource('permit',PermitLetterController::class);
-Route::get('incoming',[PermitLetterController::class, 'update']);
+
+Route::get('incoming',[PermitLetterController::class, 'update'])->middleware('must-admin-or-teacher');
 
 Route::resource('class',ClassController::class);
 
@@ -37,5 +37,6 @@ Route::view('/login','login');
 Route::view('/history','history');
 
 
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
