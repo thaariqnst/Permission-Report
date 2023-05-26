@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PermitLetter;
 use Illuminate\Http\Request;
+use App\Models\Kelas;
+use App\Models\User;
 
 class PermitLetterController extends Controller
 {
@@ -31,7 +33,10 @@ class PermitLetterController extends Controller
      */
     public function create()
     {
-        
+        $permitletter = PermitLetter::all();
+        $kelas = Kelas::all();
+        $user = User::all();
+        return view('permit.create', compact('kelas','permitletter','user'));
     }
 
     /**

@@ -18,17 +18,16 @@ use App\Http\Controllers\ClassController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 }); 
 
 // Route::get('/input',[PermitLetterController::class, 'index']);
 // Route::post('/permitletter',[PermitLetterController::class, 'store'])->name('permitletter');
 
-Route::resource('submit',SubmitLetterController::class);
-
 Route::resource('permit',PermitLetterController::class);
-
+Route::get('submit',[PermitLetterController::class, 'create']);
 Route::get('incoming',[PermitLetterController::class, 'update'])->middleware('must-admin-or-teacher');
+
 
 Route::resource('class',ClassController::class);
 
@@ -39,4 +38,5 @@ Route::view('/history','history');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [PermitLetterController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/', [PermitLetterController::class, 'index'])->name('home')->middleware('auth');
