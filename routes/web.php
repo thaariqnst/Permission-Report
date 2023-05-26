@@ -21,11 +21,8 @@ Route::get('/', function () {
     return view('home');
 }); 
 
-// Route::get('/input',[PermitLetterController::class, 'index']);
-// Route::post('/permitletter',[PermitLetterController::class, 'store'])->name('permitletter');
-
-Route::resource('permit',PermitLetterController::class);
-Route::get('submit',[PermitLetterController::class, 'create']);
+Route::resource('permit',PermitLetterController::class)->middleware('auth');
+Route::get('submit',[PermitLetterController::class, 'create'])->middleware('auth');
 Route::get('incoming',[PermitLetterController::class, 'update'])->middleware('must-admin-or-teacher');
 
 
