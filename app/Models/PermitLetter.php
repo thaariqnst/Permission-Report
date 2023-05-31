@@ -12,8 +12,8 @@ class PermitLetter extends Model
     protected $table = 'permit_letter';
     protected $guarded = [];
 
-    public function user(): BelongsTo
+    public function user()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo('App\Models\User','id_user');
     }
 }

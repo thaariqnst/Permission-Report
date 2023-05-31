@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('permit_letter', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('class_id')->constrained('class')->cascadeOnDelete();
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('class_id')->references('id')->on('class')->cascadeOnDelete();
             $table->enum('permission_type', ['health', 'other'])->default('other');
             $table->string('desc',255);
             $table->string('proof');

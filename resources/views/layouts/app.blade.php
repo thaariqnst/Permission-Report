@@ -37,6 +37,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/submit') }}">submit</a>
                         </li>
+                        @auth
                         @if (Auth::user()->level == 'admin' || Auth::user()-> level == 'teacher')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/incoming') }}">incoming</a>
@@ -45,6 +46,7 @@
                             <a class="nav-link" href="#">history</a>
                         </li>
                         @endif
+                        @endauth
                     </ul>
 
 

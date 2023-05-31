@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="container">
                                             <div class="fw-light">description</div>
-                                            <div class="">{{$data->desription}}</div>
+                                            <div class="">{{$data->description}}</div>
                                         </div>
                                     </div>
 
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="card-footer bg-white">
                                     <div class="fw-light">PIC Name</div>
-                                    <div class="fw-bold">{{$data->pic_name}}</div>
+                                    <div class="fw-bold">{{!! $data->pic_name !!}}</div>
                                 </div>
                             </div>
                         </div>

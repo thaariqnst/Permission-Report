@@ -23,8 +23,8 @@ class PermitLetterController extends Controller
      
     public function index()
     {
-        $permitletter = PermitLetter::latest()->paginate();
-        return view('permit.index', compact('permitletter'));
+        $permitletter = PermitLetter::all();
+        return view('permit.incoming', compact('permitletter'));
     }
 
     /**
@@ -85,8 +85,6 @@ class PermitLetterController extends Controller
     public function update(Request $request, PermitLetter $permitLetter)
     {
         $permitletter = PermitLetter::all();
-
-        
         return view('permit.incoming', compact('permitletter'));
     }
 
@@ -99,5 +97,15 @@ class PermitLetterController extends Controller
     public function destroy(PermitLetter $permitLetter)
     {
         //
+    }
+
+    public function accept($id)
+    {
+        $permitletter = PermitLetter::findOrFail($id);
+        
+        $permitLetter->status = 'accepted';
+        $permitLetter->save();
+
+        return redirect()->back()->with('success', 'Letter accepted successfully.');
     }
 }
