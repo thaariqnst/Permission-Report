@@ -9,12 +9,25 @@
                 <div class="card-body">
                     <div class="row row-cols-2">
 
-                @foreach($permitletter as $data)
+                        @foreach($permitletter as $data)
                         <div class="mb-4">
                             <div class="card">
-                                <div class="card-header bg-white">
-                                    <div class="fw-bold">{{$data->user->name}}</div>
-                                    <div class="fw-italic">{{$data->kelas->class_name}}</div>
+                                <div class="card-header bg-white d-flex align-items-center">
+                                    <div class="col-md-6">
+                                        <div class="fw-bold">{{$data->user->name}}</div>
+                                        <div class="fw-italic">{{$data->kelas->class_name}}</div>
+                                    </div>
+                                    <div class="col-md-6 text-end">
+                                        @if($data->status == 'accepted')
+                                        <div class="d-inline-flex px-2 py-1 fw-semibold text-white bg-success rounded-2">
+                                            Accepted
+                                        </div>
+                                        @else
+                                        <div class="d-inline-flex px-2 py-1 fw-semibold text-white bg-danger rounded-2">
+                                            Rejected
+                                        </div>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="card-body p-4 d-flex">
                                     <div class="col-md-6 gap-2">
@@ -46,8 +59,8 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
 
 
 

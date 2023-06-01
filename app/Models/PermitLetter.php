@@ -21,4 +21,10 @@ class PermitLetter extends Model
     {
         return $this->belongsTo(Kelas::class, "class_id");
     }
+
+    public function filterName($id)
+    {
+        $name = $id;
+        
+    }
 }
