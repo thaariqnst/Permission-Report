@@ -14,6 +14,11 @@ class PermitLetter extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User','id_user');
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, "class_id");
     }
 }

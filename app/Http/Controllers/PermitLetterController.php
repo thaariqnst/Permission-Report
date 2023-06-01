@@ -24,7 +24,7 @@ class PermitLetterController extends Controller
     public function index()
     {
         $permitletter = PermitLetter::all();
-        return view('permit.incoming', compact('permitletter'));
+        return view('permit.index', compact('permitletter'));
     }
 
     /**
@@ -103,9 +103,19 @@ class PermitLetterController extends Controller
     {
         $permitletter = PermitLetter::findOrFail($id);
         
-        $permitLetter->status = 'accepted';
-        $permitLetter->save();
+        $permitletter->fill(['status' => 'accepted']);
+        $permitletter->save();
 
         return redirect()->back()->with('success', 'Letter accepted successfully.');
+    }
+
+    public function reject($id)
+    {
+        $permitletter = PermitLetter::findOrFail($id);
+        
+        $permitletter->fill(['status' => 'rejected']);
+        $permitletter->save();
+
+        return redirect()->back()->with('success', 'Letter Rejected.');
     }
 }

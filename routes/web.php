@@ -22,8 +22,9 @@ Route::get('/', function () {
 }); 
 
 Route::resource('permit',PermitLetterController::class)->middleware('auth');
-Route::resource('incoming',PermitLetterController::class)->middleware('must-admin-or-teacher');
+Route::get('incoming',[PermitLetterController::class, 'update'])->middleware('must-admin-or-teacher');
 Route::put('/accept/{id}',[PermitLetterController::class, 'accept'] )->name('letters.accept');
+Route::put('/reject/{id}',[PermitLetterController::class, 'reject'] )->name('letters.reject');
 
 
 

@@ -10,7 +10,11 @@ class Kelas extends Model
     //use HasFactory;
 
     protected $table = 'class';
-    protected $guarded = [];
+    protected $fillable = [
+        'major_id',
+        'class_name',
+        'user_id'
+    ];
 
     public function major(){
         return $this->belongsTo('App\Models\Major', 'id_major');
