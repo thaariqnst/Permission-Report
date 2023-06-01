@@ -18,8 +18,14 @@
                                         <div class="fw-italic">{{$data->kelas->class_name}}</div>
                                     </div>
                                     <div class="col-md-6 text-end">
-                                        @if($data->status == 'accepted')
-                                        <div class="d-inline-flex px-2 py-1 fw-semibold text-white bg-success rounded-2">
+                                        @if($data->status == 'submitted')
+                                        <div
+                                            class="d-inline-flex px-2 py-1 fw-semibold text-white bg-warning rounded-2">
+                                            Submitted
+                                        </div>
+                                        @elseif($data->status == 'accepted')
+                                        <div
+                                            class="d-inline-flex px-2 py-1 fw-semibold text-white bg-success rounded-2">
                                             Accepted
                                         </div>
                                         @else
