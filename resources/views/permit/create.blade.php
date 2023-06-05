@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group mt-3">
                             <label class="label-form">Reason</label>
-                            <textarea type="text" name="description" class="form-control" rows="3"></textarea>
+                            <textarea type="text" name="desc" class="form-control" rows="3"></textarea>
                         </div>
                         <div class="form-group mt-3">
                             <label class="label-form">Start Date</label>

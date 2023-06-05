@@ -22,9 +22,9 @@ class PermitLetter extends Model
         return $this->belongsTo(Kelas::class, "class_id");
     }
 
-    public function filterName($id)
+    public function scopeFilterByName($query, $user_id)
     {
-        $name = $id;
-        
+        return $query->where('user_id', $user_id);
+
     }
 }

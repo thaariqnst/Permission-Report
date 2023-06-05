@@ -24,6 +24,10 @@ class PermitLetterController extends Controller
     public function index()
     {
         $permitletter = PermitLetter::all();
+
+        
+
+        
         return view('permit.index', compact('permitletter'));
     }
 
