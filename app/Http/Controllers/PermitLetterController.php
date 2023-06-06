@@ -23,11 +23,7 @@ class PermitLetterController extends Controller
      
     public function index()
     {
-        $permitletter = PermitLetter::all();
-
-        
-
-        
+        $permitletter = PermitLetter::where('user_id', auth()->user()->id)->get()->all();
         return view('permit.index', compact('permitletter'));
     }
 

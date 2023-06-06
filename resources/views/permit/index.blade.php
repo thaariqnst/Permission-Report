@@ -10,6 +10,7 @@
                     <div class="row row-cols-2">
 
                         @foreach($permitletter as $data)
+                        @if($data)
                         <div class="mb-4">
                             <div class="card">
                                 <div class="card-header bg-white d-flex align-items-center">
@@ -65,6 +66,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         @endforeach
                     </div>
 
