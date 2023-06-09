@@ -35,8 +35,12 @@ Route::view('/signin','signin');
 Route::view('/login','login');
 Route::view('/history','history');
 
+Route::view('/menu', 'partials.menu');
+
 
 Auth::routes();
 
 Route::get('/home', [PermitLetterController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/', [PermitLetterController::class, 'index'])->name('home')->middleware('auth');
+
+Route::view('tampilan','layouts.template');

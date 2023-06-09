@@ -67,7 +67,7 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Student Level -->
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="{{ url('/') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Home</div>
@@ -82,14 +82,15 @@
                     </li>
 
                     <!-- Teacher & Admin Level -->
-                    <li class="menu-item">
+                    <li class="menu-item active open">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
                             <div data-i18n="Layouts">Permit Letters</div>
                         </a>
+
                         <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ url('/incoming') }}" class="menu-link">
+                            <li class="menu-item active">
+                                <a href="layouts-without-menu.html" class="menu-link">
                                     <div data-i18n="Without menu">New Incoming Letters</div>
                                 </a>
                             </li>
@@ -197,14 +198,13 @@
                     <!-- Content -->
 
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4">Your Recently Submitted Letters</h4>
+                        <h4 class="fw-bold py-3 mb-4">Incoming Letters</h4>
 
                         <!-- Examples -->
                         <div class="row mb-5">
                             <!-- Permit Letter Card -->
                             @foreach($permitletter as $data)
-                            @if($data)
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-12 mb-3">
                                 <div class="card h-100">
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
@@ -237,9 +237,9 @@
                                         <li class="list-group-item">
                                             <div class="card-body p-4 d-flex">
                                                 <div class="col-md-6 gap-2">
-                                                    <div class="container mb-2">
+                                                    <div class="container">
                                                         <div class="fw-light">permit type :</div>
-                                                        <div>{{$data->permission_type}}</div>
+                                                        <div>{{$data->permit_type}}</div>
                                                     </div>
                                                     <div class="container">
                                                         <div class="fw-light">description :</div>
@@ -248,7 +248,7 @@
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <div class="container mb-2">
+                                                    <div class="container">
                                                         <div class="fw-light">start date :</div>
                                                         <div>{{$data->start_date}}</div>
                                                     </div>
@@ -263,14 +263,56 @@
 
                                         <li class="list-group-item">
                                             <div class="card-footer bg-white">
-                                                <div class="fw-light">PIC Name</div>
-                                                <div class="fw-bold">{{$data->pic_name}}</div>
+                                                <div class="row justify-content-between">
+                                                    <div class="col-md-6">
+                                                        <div class="fw-light">PIC Name :</div>
+                                                        <div class="fw-bold">{{$data->pic_name}}</div>
+
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="row align-items-center">
+                                                            <form action="/accept/{{$data->id}}" method="POST"
+                                                                route="letters.accept" class="w-auto">
+                                                                @csrf
+                                                                {{method_field('PUT')}}
+                                                                <button class="btn btn-success mt-1">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-check-circle" viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                                        <path
+                                                                            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                                                    </svg>
+                                                                    Terima
+                                                                </button>
+                                                            </form>
+
+                                                            <form action="/reject/{{$data->id}}" method="POST"
+                                                                route="letters.reject" class="w-auto">
+                                                                @csrf
+                                                                {{method_field('PUT')}}
+                                                                <button class="btn btn-danger mt-1">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-x-circle" viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                                        <path
+                                                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                                    </svg>
+                                                                    Tolak
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            @endif
                             @endforeach
                             <!-- /Permit Letter Card -->
 
@@ -291,7 +333,10 @@
         </div>
         <!-- / Layout wrapper -->
 
-        
+        <div class="buy-now">
+            <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/" target="_blank"
+                class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
+        </div>
 
         <!-- Core JS -->
         <!-- build:js assets/vendor/js/core.js -->
