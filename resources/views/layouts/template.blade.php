@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Permit | Submit Letter</title>
 
     <meta name="description" content="" />
 
@@ -74,7 +74,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item active">
                         <a href="{{ url('/submit') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-detail"></i>
                             <div data-i18n="Basic">Submit a new letter</div>
@@ -82,14 +82,14 @@
                     </li>
 
                     <!-- Teacher & Admin Level -->
-                    <li class="menu-item active open">
+                    <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
                             <div data-i18n="Layouts">Permit Letters</div>
                         </a>
 
                         <ul class="menu-sub">
-                            <li class="menu-item active">
+                            <li class="menu-item">
                                 <a href="layouts-without-menu.html" class="menu-link">
                                     <div data-i18n="Without menu">New Incoming Letters</div>
                                 </a>
@@ -154,8 +154,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-semibold d-block"> {{ Auth::user()->name }}
+                                                    </span>
+                                                    <small class="text-muted"> {{ Auth::user()->level }}
+                                                    </small>
                                                 </div>
                                             </div>
                                         </a>
@@ -179,9 +181,14 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
                                         </a>
                                     </li>
                                 </ul>
@@ -197,168 +204,120 @@
                 <div class="content-wrapper">
                     <!-- Content -->
 
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4">Incoming Letters</h4>
+                    <div class="container flex-grow-1 container-p-y">
 
-                        <!-- Examples -->
-                        <div class="row mb-5">
-                            <!-- Permit Letter Card -->
-                            @foreach($permitletter as $data)
-                            <div class="col-md-12 mb-3">
-                                <div class="card h-100">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <div class="card-header bg-white d-flex align-items-center">
-                                                <div class="col-md-6">
-                                                    <div class="fw-bold">{{$data->user->name}}</div>
-                                                    <div class="fw-italic">{{$data->kelas->class_name}}</div>
-                                                </div>
-                                                <div class="col-md-6 text-end">
-                                                    @if($data->status == 'submitted')
-                                                    <div
-                                                        class="d-inline-flex px-2 py-1 fw-semibold text-white bg-warning rounded-2">
-                                                        Submitted
-                                                    </div>
-                                                    @elseif($data->status == 'accepted')
-                                                    <div
-                                                        class="d-inline-flex px-2 py-1 fw-semibold text-white bg-success rounded-2">
-                                                        Accepted
-                                                    </div>
-                                                    @else
-                                                    <div
-                                                        class="d-inline-flex px-2 py-1 fw-semibold text-white bg-danger rounded-2">
-                                                        Rejected
-                                                    </div>
-                                                    @endif
-                                                </div>
+
+                        <div class="col-xl">
+                            <div class="card mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Submit Permission Letter</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{{route('permit.store')}}" method="POST">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label class="form-label">Full Name</label>
+                                            <input type="text" name="user_id" class="form-control" hidden
+                                                value="{{Auth::user()->id}}" />
+                                            <input type="text" name="user_id" class="form-control" disabled
+                                                value="{{Auth::user()->name}}" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Class</label>
+                                            <select class="form-select" name="class_id">
+                                                <option selected>Pilih Kelas</option>
+                                                @foreach($kelas as $row)
+                                                <option value="{{$row->id}}">{{$row->class_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Reason</label>
+                                            <select class="form-select" name="permission_type">
+                                                <option selected>Izin Karena</option>
+                                                <option value="health">Health</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Deskripsi</label>
+                                            <textarea class="form-control" type="text" name="desc" rows="3"
+                                                placeholder="Alasan saya izin karena..."></textarea>
+                                        </div>
+                                        <div class="mb-3" hidden>
+                                            <label class="form-label">Upload Bukti</label>
+                                            <!-- BELUM DI ATUR UNTUk UPLOAD GAMBAR -->
+                                            <input class="form-control" type="file" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-md-2 col-form-label">Start Date</label>
+                                            <div class="col-md-6">
+                                                <input class="form-control" type="date" name="start_date" />
                                             </div>
-                                        </li>
-
-                                        <li class="list-group-item">
-                                            <div class="card-body p-4 d-flex">
-                                                <div class="col-md-6 gap-2">
-                                                    <div class="container">
-                                                        <div class="fw-light">permit type :</div>
-                                                        <div>{{$data->permit_type}}</div>
-                                                    </div>
-                                                    <div class="container">
-                                                        <div class="fw-light">description :</div>
-                                                        <div class="">{{$data->desc}}</div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="container">
-                                                        <div class="fw-light">start date :</div>
-                                                        <div>{{$data->start_date}}</div>
-                                                    </div>
-                                                    <div class="container">
-                                                        <div class="fw-light">end date :</div>
-                                                        <div>{{$data->end_date}}</div>
-                                                    </div>
-                                                </div>
-
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-md-2 col-form-label">End Date</label>
+                                            <div class="col-md-6">
+                                                <input class="form-control" type="date" name="end_date" />
                                             </div>
-                                        </li>
-
-                                        <li class="list-group-item">
-                                            <div class="card-footer bg-white">
-                                                <div class="row justify-content-between">
-                                                    <div class="col-md-6">
-                                                        <div class="fw-light">PIC Name :</div>
-                                                        <div class="fw-bold">{{$data->pic_name}}</div>
-
-
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="row align-items-center">
-                                                            <form action="/accept/{{$data->id}}" method="POST"
-                                                                route="letters.accept" class="w-auto">
-                                                                @csrf
-                                                                {{method_field('PUT')}}
-                                                                <button class="btn btn-success mt-1">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                        height="16" fill="currentColor"
-                                                                        class="bi bi-check-circle" viewBox="0 0 16 16">
-                                                                        <path
-                                                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                                        <path
-                                                                            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                                                    </svg>
-                                                                    Terima
-                                                                </button>
-                                                            </form>
-
-                                                            <form action="/reject/{{$data->id}}" method="POST"
-                                                                route="letters.reject" class="w-auto">
-                                                                @csrf
-                                                                {{method_field('PUT')}}
-                                                                <button class="btn btn-danger mt-1">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                        height="16" fill="currentColor"
-                                                                        class="bi bi-x-circle" viewBox="0 0 16 16">
-                                                                        <path
-                                                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                                        <path
-                                                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                                                    </svg>
-                                                                    Tolak
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">PIC Name</label>
+                                            <select class="form-select" name="pic_name">
+                                                <option selected>Nama Guru </option>
+                                                @foreach($user as $row)
+                                                @if($row->level == 'teacher')
+                                                <option value="{{$row->name}}">{{$row->name}}</option>
+                                                @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    </form>
                                 </div>
                             </div>
-                            @endforeach
-                            <!-- /Permit Letter Card -->
-
                         </div>
-                        <!-- / Content -->
-
-
-
-                        <div class="content-backdrop fade"></div>
                     </div>
-                    <!-- Content wrapper -->
+
+                    <!-- / Content -->
+
+
+
+                    <div class="content-backdrop fade"></div>
                 </div>
-                <!-- / Layout page -->
+                <!-- Content wrapper -->
             </div>
-
-            <!-- Overlay -->
-            <div class="layout-overlay layout-menu-toggle"></div>
-        </div>
-        <!-- / Layout wrapper -->
-
-        <div class="buy-now">
-            <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/" target="_blank"
-                class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
+            <!-- / Layout page -->
         </div>
 
-        <!-- Core JS -->
-        <!-- build:js assets/vendor/js/core.js -->
-        <script src="{{asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
-        <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
 
-        <script src="{{asset('assets/vendor/js/menu.js')}}"></script>
-        <!-- endbuild -->
 
-        <!-- Vendors JS -->
-        <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 
-        <!-- Main JS -->
-        <script src="{{asset('assets/js/main.js')}}"></script>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
+    <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
+    <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
+    <script src="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
 
-        <!-- Page JS -->
-        <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+    <script src="{{asset('assets/vendor/js/menu.js')}}"></script>
+    <!-- endbuild -->
 
-        <!-- Place this tag in your head or just before your close body tag. -->
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Vendors JS -->
+    <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+
+    <!-- Main JS -->
+    <script src="{{asset('assets/js/main.js')}}"></script>
+
+    <!-- Page JS -->
+    <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>
