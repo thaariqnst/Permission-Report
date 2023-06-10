@@ -124,10 +124,14 @@
               </form>
 
               <p class="text-center">
+                @guest
+                @if(Route::has('register'))
                 <span>New on our platform?</span>
-                <a href="auth-register-basic.html">
+                <a href="{{ route('register') }}">
                   <span>Create an account</span>
                 </a>
+                @endif
+                @endguest
               </p>
             </div>
           </div>
